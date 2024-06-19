@@ -1,0 +1,6 @@
+record(bo, "A:GL:IOC:$(app)-$(index):Status:Alive") {
+    field(VAL, 1)
+    field(ONAM, "Alive")
+    field(ZNAM, "Dead")
+    field(PINI, 1)
+}

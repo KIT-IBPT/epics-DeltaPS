@@ -1,0 +1,63 @@
+
+record(bo, "$(device):Cmd:Start") {
+  field(DESC, "Starts the PS unit")
+  field(DTYP, "Soft Channel")
+  field(FLNK, "$(device):int_Start PP")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(TPRO, "0")
+}
+
+record(seq, "$(device):int_Start") {
+  field(SELM, "All")
+  
+  field(DLY1, "0")
+  field(DLY2, "1")
+  field(DLY3, "0")
+  field(DLY4, "0")
+  field(DLY5, "1")
+  
+  field(DOL1, "1")
+  field(DOL2, "1")
+  field(DOL3, "$(device):Current:Setpoint:Get.VAL")
+  field(DOL4, "$(device):Current:Setpoint.VAL")
+  field(DOL5, "1")
+  
+  field(LNK1, "$(device):Cmd:Reset.PROC")
+  field(LNK2, "$(device):Cmd:Direct:On.PROC")
+  field(LNK3, "$(device):Current:Ramp.OVAL")
+  field(LNK4, "$(device):Current:Ramp")
+  field(LNK5, "$(device):Status:Ramping")
+  
+  field(TPRO, "0")
+}
+
+record(bo, "$(device):Cmd:Stop") {
+  field(DESC, "Stops the PS unit")
+  field(DTYP, "Soft Channel")
+  field(FLNK, "$(device):int_Stop PP")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(TPRO, "0")
+}
+
+record(seq, "$(device):int_Stop") {
+  field(SELM, "All")
+  
+  field(DLY1, "0")
+  field(DLY2, "0")
+  field(DLY3, "1")
+  field(DLY4, "$(delay)")
+  
+  field(DOL1, "$(device):Current:Setpoint:Get.VAL")
+  field(DOL2, "0")
+  field(DOL3, "1")
+  field(DOL4, "1")
+  
+  field(LNK1, "$(device):Current:Ramp.OVAL")
+  field(LNK2, "$(device):Current:Ramp.VAL")
+  field(LNK3, "$(device):Status:Ramping")
+  field(LNK4, "$(device):Cmd:Direct:Off.PROC")
+  
+  field(TPRO, "0")
+}

@@ -1,0 +1,26 @@
+
+### PS Configuration Macros ###
+# device - name of PV
+# alias - alternative or historical device name
+# c_min - min operating current limit
+# c_max - max operating current limit
+# v_min - min operating voltage limit
+# v_max - max operating voltage limit
+# c_ctrl - current set to device when it is used in voltage controlled mode. 
+#           Value must be high enough to allow requested voltage 
+#	   within operating range.
+# v_ctrl - voltage set to device when it is used in current controlled mode. 
+#           Value must be high enough to allow requested current 
+#	   witthin operating range.
+# scan - scan rate in seconds, valid values: .1, .2, .5, 1, 2, 5, 10
+# prec - precision field, how manz places after decimal comma should be used
+#        in GUI
+
+
+
+file "../../db/DeltaPSC-ETH.db"{
+  pattern {device,                  alias,      c_min, c_max, v_min, v_max, c_ctrl, v_ctrl, scan, prec,      PORT,      A}
+#          {A:ID-S1:PS:MCV-03,       ES_030_5,   0,     2,     0,    30,     2,      30,     .2,   4,         CLICMCH01, 0}
+#          {A:TEST:PS:DELTA01,       ES_030_5,   0,     5,     0,    30,     5,      30,     .2,   2,         TEST01,    0}   
+#          {A:ID-S1:SCU15:PSMCH-01,  ES_030_5,   0,     2,     0,    20,     2,      20,     .2,   2,         SCU15MCH01,0}
+}

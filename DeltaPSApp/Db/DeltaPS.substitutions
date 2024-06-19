@@ -1,0 +1,93 @@
+
+### PS Configuration Macros ###
+# device - name of PV
+# alias  - alternative or historical device name
+# c_min  - min operating current limit
+# c_max  - max operating current limit
+# v_min  - min operating voltage limit
+# v_max  - max operating voltage limit
+# c_ctrl - current set to device when it is used in voltage controlled mode. 
+#          alue must be high enough to allow requested voltage 
+#          within operating range.
+# v_ctrl - voltage set to device when it is used in current controlled mode. 
+#          Value must be high enough to allow requested current 
+#          witthin operating range.
+# scan   - scan rate in seconds, valid values: .1, .2, .5, 1, 2, 5, 10
+# prec   - precision field, how manz places after decimal comma should be used
+#          in GUI
+# c_ramp - current ramping step rate, defined scan rate in seconds, 
+#          valid values: .1, .2, .5, 1, 2, 5, 10
+# c_step - ramping step size in A
+
+# c_ramp and c_step are set is such way, that they result in 5 (or 3) second ramp from max current
+
+file "../../db/DeltaPS.db"{
+  pattern   {device,             alias,       c_min, c_max,  v_min, v_max, c_ctrl, v_ctrl, scan, prec, c_ramp, c_step, PORT,       A}
+            {A:IL:PS:MB-01,      PBEND_I.01,  0,     100,    0,      35,   100,     35,    .2,   2,    .1,     2.0,    L1,         0}
+            {A:EL:PS:MB-01A,     PBEND_E.01A, 0,     100,    0,      35,    20,     35,    .2,   2,    .1,     2.0,    EB1A,       0}
+            {A:EL:PS:MB-01B,     PBEND_E.01B, 0,     100,    0,      35,    20,     35,    .2,   2,    .1,     2.0,    EB1B,       0}
+            {A:EL:PS:MB-02A,     PBEND_E.02A, 0,     100,    0,      35,    20,     35,    .2,   2,    .1,     2.0,    EB2A,       0}
+            {A:EL:PS:MB-02B,     PBEND_E.02B, 0,     100,    0,      35,    20,     35,    .2,   2,    .1,     2.0,    EB2B,       0}
+            {A:EL:PS:MQ-01,      PQ_E.01,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ1,        0}
+            {A:EL:PS:MQ-02,      PQ_E.02,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ2,        0}
+            {A:EL:PS:MQ-03,      PQ_E.03,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ3,        0}
+            {A:EL:PS:MQ-04,      PQ_E.04,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ4,        0}
+            {A:EL:PS:MQ-05,      PQ_E.05,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ5,        0}
+            {A:EL:PS:MQ-06,      PQ_E.06,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ6,        0}
+            {A:EL:PS:MQ-07,      PQ_E.07,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ7,        0}
+            {A:EL:PS:MQ-08,      PQ_E.08,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ8,        0}
+            {A:EL:PS:MQ-09,      PQ_E.09,     0,      70,    0,      35,    70,     35,    .2,   2,    .1,     1.4,    EQ9,        0}
+            {A:MI:PS:MB-05,      PBEND_M.05,  0,     110,    0,      35,    20,     35,    .2,   2,    .1,     2.2,    BM5,        0}
+            {A:MI:PS:MB-08,      PBEND_M.08,  0,     110,    0,      35,    20,     35,    .2,   2,    .1,     2.2,    BM8,        0}
+            {A:MI:PS:MB-10,      PBEND_M.10,  0,     110,    0,      35,    20,     35,    .2,   2,    .1,     2.2,    BM10,       0}
+            {A:MI:PS:MB-11A,     PBEND_M.11A, 0,     110,    0,      35,    20,     35,    .2,   2,    .1,     2.2,    BM11A,      0}
+            {A:MI:PS:MB-11B,     PBEND_E.11B, 0,     110,    0,      35,    20,     35,    .2,   2,    .1,     2.2,    BM11B,      0}
+            {A:ID-S1:PS:MCV-01,  IDS1CV1,     0,       3,    0,      12,     0,     12,    .2,   2,    .1,     0.1,    IDS1CV1,    0}
+            {A:ID-S1:PS:MCV-02,  IDS1CV2,     0,       3,    0,      12,     0,     12,    .2,   2,    .1,     0.1,    IDS1CV2,    0}
+            {A:SR-S2:PS:KlyMain, S2KLYM,      0,      10,    0,     180,    10,    160,    .2,   2,    .1,     0.2,    S2KLYM,     0}
+            {A:SR-S2:PS:KlyOut,  S2KLYOUT,    0,      10,    0,     140,    10,    100,    .2,   2,    .1,     0.2,    S2KLYOUT,   0}
+            {A:SR-S4:PS:KlyMain, S4KLYM,      0,      10,    0,     180,    10,    160,    .2,   2,    .1,     0.2,    S4KLYM,     0}
+            {A:SR-S4:PS:KlyOut,  S4KLYOUT,    0,      10,    0,     140,    10,    100,    .2,   2,    .1,     0.2,    S4KLYOUT,   0}
+}
+
+### PS Configuration Macros ###
+# device - name of PV
+# delay  - stop operation delay in seconds, should last for ramp down
+
+file "../../db/PS-StartStop.db"{
+  pattern   {device,             delay, A}
+            {A:IL:PS:MB-01,      5,     0}
+            {A:EL:PS:MB-01A,     5,     0}
+            {A:EL:PS:MB-01B,     5,     0}
+            {A:EL:PS:MB-02A,     5,     0}
+            {A:EL:PS:MB-02B,     5,     0}
+            {A:EL:PS:MQ-01,      5,     0}
+            {A:EL:PS:MQ-02,      5,     0}
+            {A:EL:PS:MQ-03,      5,     0}
+            {A:EL:PS:MQ-04,      5,     0}
+            {A:EL:PS:MQ-05,      5,     0}
+            {A:EL:PS:MQ-06,      5,     0}
+            {A:EL:PS:MQ-07,      5,     0}
+            {A:EL:PS:MQ-08,      5,     0}
+            {A:EL:PS:MQ-09,      5,     0}
+            {A:MI:PS:MB-05,      5,     0}
+            {A:MI:PS:MB-08,      5,     0}
+            {A:MI:PS:MB-10,      5,     0}
+            {A:MI:PS:MB-11A,     5,     0}
+            {A:MI:PS:MB-11B,     5,     0}
+            {A:ID-S1:PS:MCV-01,  3,     0}
+            {A:ID-S1:PS:MCV-02,  3,     0}
+            {A:SR-S2:PS:KlyMain, 5,     0}
+            {A:SR-S2:PS:KlyOut,  5,     0}
+            {A:SR-S4:PS:KlyMain, 5,     0}
+            {A:SR-S4:PS:KlyOut,  5,     0}
+}
+
+
+
+file "../../db/DeltaPS-Master.db"{
+  pattern   {device,        alias,      c_min,  c_max, v_min,   v_max,  scan,   prec,   slaveA,         slaveB}
+            {A:EL:PS:MB-01, PBEND_E.01, 0,      200,    0,      35,     .2,     2,      A:EL:PS:MB-01A, A:EL:PS:MB-01B}
+            {A:EL:PS:MB-02, PBEND_E.02, 0,      200,    0,      35,     .2,     2,      A:EL:PS:MB-02A, A:EL:PS:MB-02B}
+            {A:MI:PS:MB-11, PBEND_M.11, 0,      220,    0,      35,     .2,     2,      A:MI:PS:MB-11A, A:MI:PS:MB-11B}
+}

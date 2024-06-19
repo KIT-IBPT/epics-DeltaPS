@@ -1,0 +1,118 @@
+#
+# Simple database and stream protocol file for basic SCPI (IEEE488.2) commands
+#
+
+
+#
+# Short and long form of identification string
+#
+record(stringin, "$(device):Status:IDN")
+{
+    field(DESC, "SCPI identification string")
+    field(DTYP, "stream")
+    field(INP,  "@devMyDevice.proto getIDN() $(PORT) $(A)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(device):SwitchRemote")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devMyDevice.proto cmd(GTR) $(PORT) $(A)")
+    # Switch to remote mode on startup
+    field(PINI, "YES")
+}
+
+record(bo, "$(device):Cmd:Reset")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devMyDevice.proto reset() $(PORT) $(A)")
+    # Switch to remote mode on startup
+    field(PINI, "YES")
+}
+
+record(ai, "$(device):Voltage:Readback")
+{
+    field(DESC, "Get Output Voltage Readback")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devMyDevice.proto getMeasure(MUA,V) $(PORT) $(A)")
+    field(PINI, "YES")
+    field(PREC, "4")
+    field(EGU,  "V")
+    field(HOPR, "$(v_max)")
+    field(LOPR, "$(v_min)")
+}
+
+record(ai, "$(device):Voltage:Setpoint:Get")
+{
+    field(DESC, "Get Setpoint for Output Voltage")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devMyDevice.proto getF(UA,V) $(PORT) $(A)")
+    field(PINI, "YES")
+    field(PREC, "4")
+    field(EGU,  "V")
+    field(HOPR, "$(v_max)")
+    field(LOPR, "$(v_min)")
+}
+
+record(ao, "$(device):Voltage:Setpoint")
+{
+    field(DESC, "Setpoint for Output Voltage")
+    field(DTYP, "stream")
+    field(OUT,  "@devMyDevice.proto setCtrlF(UA,V,IA,$(a_ctrl),A) $(PORT) $(A)")
+    #field(FLNK, "$(device):GetPOWRF")
+    field(PREC, "4")
+    field(VAL, "0")
+    field(EGU,  "V")
+    field(HOPR, "$(v_max)")
+    field(LOPR, "$(v_min)")
+}
+
+record(ai, "$(device):Current:Readback")
+{
+    field(DESC, "Get Output Current")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devMyDevice.proto getMeasure(MIA,A) $(PORT) $(A)")
+    field(PINI, "YES")
+    field(PREC, "4")
+    field(EGU,  "A")
+    field(HOPR, "$(a_max)")
+    field(LOPR, "$(a_min)")
+}
+
+record(ai, "$(device):Current:Setpoint:get")
+{
+    field(DESC, "Get Setpoint for Output Current")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devMyDevice.proto getF(IA,A) $(PORT) $(A)")
+    field(PINI, "YES")
+    field(PREC, "4")
+    field(EGU,  "A")
+    field(HOPR, "$(a_max)")
+    field(LOPR, "$(a_min)")
+}
+
+record(ao, "$(device):Current:Setpoint")
+{
+    field(DESC, "Setpoint for Output Current")
+    field(DTYP, "stream")
+    field(OUT,  "@devMyDevice.proto setCtrlF(IA,A,UA,$(v_ctrl),V) $(PORT) $(A)")
+    #field(FLNK, "$(device):GetPOWRF")
+    field(PREC, "4")
+    field(EGU,  "A")
+    field(VAL,  "0")
+    field(HOPR, "$(a_max)")
+    field(LOPR, "$(a_min)")
+}
+
+record(longin, "$(device):Status")
+{
+    field(DESC, "Status")
+    field(DTYP, "stream")
+    field(INP,  "@devMyDevice.proto getB(DI) $(PORT) $(A)")
+    field(PREC, 16)
+}
+

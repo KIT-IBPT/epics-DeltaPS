@@ -1,0 +1,57 @@
+
+interminator  = LF;
+outterminator = LF;
+locktimeout   = 3000;
+replytimeout  = 3000;
+readtimeout   = 3000;
+extrainput    = Ignore;
+separator     = LF; 
+
+
+
+#commands
+
+
+getIDN {
+    cmd="*IDN?";
+    out ${cmd};
+    in "%#s";
+    #in "%[ a-zA-Z0-9]";
+}
+
+cmd {
+    out "\$1";
+}
+
+cmd1 {
+    out "\$1 \$2";
+}
+
+getF {
+    out "\$1";
+    in  "%f";
+}
+
+getD {
+    out "\$1";
+    in  "%d";
+}
+
+
+setF {
+    out "\$1 %f";
+    @init { out "\$1?"; in "%f" }
+}
+
+setFCtrl {
+    out "\$2 \$3";
+    out "\$1 %f";
+    @init { out "\$1?"; in "%f" }
+}
+
+getON {
+    out "OUTP?";
+    in "%{0|1}";
+}
+
+

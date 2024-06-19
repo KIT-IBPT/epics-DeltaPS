@@ -1,0 +1,72 @@
+
+locktimeout   = 3000;
+replytimeout  = 3000;
+readtimeout   = 3000;
+extrainput    = Ignore;
+
+
+getIDN {
+    out "ID";
+    #wait 500;
+    in "\$1\n[^\r\n]";
+}
+
+cmd {
+    out "\$1";
+}
+
+reset {
+    out "RI";
+    in  "%*s";
+    out "GTR";
+    in  "%*s";
+    out "UA,0V";
+    in  "%*s";
+    out "IA,0A";
+    in  "%*s";
+    out "SB,R";
+    in  "%*s";
+}
+
+
+getD {
+    out "\$1";
+    in "\$1\n\$1,%d";
+    ExtraInput = Ignore;
+}
+
+setD {
+    out "\$1,%d";
+}
+
+getF {
+    out "\$1";
+    #wait 500;
+    in "\$1\n\$1,%f\$2";
+}
+
+
+getMeasure {
+    out "\$1";
+    #wait 500;
+    in "\$1\n%f\$2";
+}
+
+setF {
+    out "\$1,%f"\$2;
+    in  "%*s";
+}
+
+setCtrlF {
+    out "\$1,%f\$2";
+    in  "%*s";
+    out "\$3,\$4\$5";
+    in  "%*s";
+}
+
+getB {
+    out "\$1";
+    #wait 500;
+    in "\$1\n%b";
+}
+
